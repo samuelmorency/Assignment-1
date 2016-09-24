@@ -11,42 +11,43 @@
 puts 'What is your string?'
 givenString = gets.chomp
 
-def maxBlock(str)
-	maxRun = 0
-	currentRun = 1
-	characterCounter = 1
-	
-	if str.length == 0
-		maxRun = 0
-		#If no input, longest run is zero
-		
-	elsif str.length == 1
-		maxRun = 1
-		#If string is one character, longest run is 1
-		
-	elsif str.length == 2 and str[characterCounter] != str[characterCounter + 1]
-		maxRun = 1
-		#if string is two chars and they do not equal, longest run is 1
-		
-	elsif str.length == 3 and str[0] != str[1] and str[1] != str[2]
-		maxRun = 1
-		#if string is three chars and they do not equal, longest run is 1
-		
-	else
-		str.each_char do|st|
-		#Go through each char, compare it to the next, find longest run
-			if st == str[characterCounter]
-				currentRun++
-				if currentRun > maxRun
-					maxRun = currentRun
-				end
-			else
-				currentRun = 1
-			end
-			characterCounter++
-		end
-	end
+def maxBlock(str)  
+  maxRun = 0  
+  currentRun = 1  
+  characterCounter = 0
+
+  if str.length == 0
+    maxRun = 0
+    #If no input, longest run is zero
+
+  elsif str.length == 1  
+    maxRun = 1
+    #If string is one character, longest run is 1
+
+  elsif str.length == 2 and str[characterCounter] != str[characterCounter + 1]
+    maxRun = 1
+    #if string is two chars and they do not equal, longest run is 1
+
+  elsif str.length == 3 and str[0] != str[1] and str[1] != str[2]
+    maxRun = 1
+    #if string is three chars and they do not equal, longest run is 1
+
+  else
+  	characterCounter += 1
+    str.each_char do|st|
+      #Go through each char, compare it to the next, find longest run
+      if st == str[characterCounter]
+        currentRun += 1
+        if currentRun > maxRun
+          maxRun = currentRun
+        end
+      else
+        currentRun = 1
+      end
+      characterCounter += 1
+    end
+  end
+return maxRun
 end
-		
 longestRun = maxBlock(givenString)
 puts longestRun
